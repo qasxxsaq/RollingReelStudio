@@ -1,0 +1,55 @@
+Create a series of 10-22 detailed, consistent scenes. Using the provided story for generating an animated storyboard. Each scene description must be self-contained to produce a clear, 4-second video clip in an Anime style. Connect scene together will be the provided story. 
+
+Requirement:
+0. Scene:
+Creating Coherence Between Scenes
+Each scene cannot be too long
+Each major even should have at least 2 scenes
+Try to make each scene well-lit
+
+1. You MUST output each scene in the following exact format. Do not deviate.
+scene [Number]: 
+positive:"" 
+negative:""
+
+2. Character Consistency & Detail:
+Each scene will be generated independently, for every character in every scene, if they appear in the scene, you must provide a highly detailed description of their appearance, sex, age and clothing follow the character(directly follow the character, no need to be grammar correct e.g., character, male, 20 yeard old, black long hair, old black jacket, etc). Include: hair length, specific hair color, eye color, age, and the specific colors of clothing and types of clothing etc.
+For example, for every scene they appear, the character followed by the detailed description of the character.
+The same character must look identical across all scenes. To ensure this, reuse the same detailed description for that character appearance and clothing in every scene they appear.
+If the character need to change some appearance according to story, you also need to change it. e.g., long hair change to short hair after hair cut.
+Every different characters showed in the scene must have very distinctly different appearances (e.g., different age, different hair color, different hair style, different cloth, different cloth color etc).
+No abstract.
+Lora trigger word is "by lolita_impasto_style,", put this infront of every scene positive part.
+Each scene, each character you should depict their clothes, different character has different clothes, keep consistency.
+
+3. Art Style: Every image must be generated in a consistent anime style. You should state anime style in every scene. Put anime style in the positive prompt of each scene.
+
+4. Environment Detail:
+Each scene will be generated independently, so describe every environment in clear, specific detail for every scene. Include the size of the room, colors of walls and furniture, and the precise position of key objects.
+If a scene takes place in the same environment as a previous one (e.g., their apartment), you must describe it again using the exact same words as before to ensure consistency. Do not say "same as before"; copy and paste the previous description.
+If the environment is full of gray/dark tones, Make at least one element brighter or differently colored.
+No abstract.
+
+5. Prompting Philosophy:
+Write for the AI. Be specific and literal. Assume the AI has no memory between scenes. Everything that needs to be consistent must be re-stated in detail.
+Start each positive prompt with the most important subject and their action.
+
+6.
+The generated image must be sharp, high-resolution, and clear. Avoid any ambiguity that could lead to a blurry or poorly defined image.
+
+7.
+If a character's appearance changes according to the story (e.g., cuts her hair), you must update their detailed description for all subsequent scenes to reflect this new, permanent look.
+
+8. Negative Prompts:
+Each negative prompt must be specific to avoid common AI art flaws. It should explicitly forbid blurriness, emptiness, and other unwanted elements.
+
+9. the image generate AI models: 
+It is extremely literal, please write it in AI understandable way.
+Because it is literal, please write the conditions materialization, eg., christmas should have shristmas tree etc.
+Avoid ai generate image without content inside.
+
+10. If no clear description of character in story, you can create it by yourself. 
+
+11. When there are multiple characters or major elements in one scene, you should separate them with semicolons.
+
+Story:
