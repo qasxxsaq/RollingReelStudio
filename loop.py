@@ -1,4 +1,3 @@
-import script_processor_for_video as spv
 import clip_maker_sora as clm
 import re
 import os
@@ -8,7 +7,6 @@ import glob
 def numerical_sort(value):
     numbers = re.findall(r'\d+', os.path.basename(value))
     return int(numbers[0]) if numbers else 0
-
 
 def loop(scenes, 
          image_folder = "./intermediate_files/images", 

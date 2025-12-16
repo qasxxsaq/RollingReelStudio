@@ -3,12 +3,15 @@ import sys
 import time
 from helper_functions import image_operations
 from datetime import datetime
+import re
+import os
+import glob
 
-with open("api_key_sora.txt", "r") as file:
+with open("api_key.txt", "r") as file:
     api_key = file.read()
 client = OpenAI(api_key = api_key)
 
-def make(image_path, prompt, output_folder=None):
+def make_one(image_path, prompt, output_folder=None):
     # Resize images to feed Sora.
     image_path = image_operations.resize_image(image_path, width=1280, height=720)
 
@@ -60,6 +63,22 @@ def make(image_path, prompt, output_folder=None):
 
         print("Video saved.\n")
 
+# Sort in the way that "file10" is after "file1".
+def numerical_sort(value):
+    numbers = re.findall(r'\d+', os.path.basename(value))
+    return int(numbers[0]) if numbers else 0
+
+def make_many(scenes, image_folder="./intermediate_files/images", clip_folder="./intermediate_files/clips"):
+    # Clip Maker loop
+    image_files = sorted(glob.glob(os.path.join(image_folder, "*.png")), key=numerical_sort)
+    if not image_files:
+        raise FileNotFoundError(f"No mp4 videos found in '{image_folder}'")
+
+    for i, image_path in enumerate(image_files):
+        print(f"Making clip for image {i+1}: {image_path}\n")
+        print(f"Prompt sent: {scenes[i]}\n")
+        make_one(image_path=image_path, prompt=scenes[i], output_folder=clip_folder)
+
 
 # Run file to use the function one time.
 if __name__ == "__main__":
@@ -74,5 +93,5 @@ if __name__ == "__main__":
     - No background music.
     - Finish the sentence within the time frame.
     """
-    make(image_path=image_path, prompt=prompt)
+    make_one(image_path=image_path, prompt=prompt)
 
