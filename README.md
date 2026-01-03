@@ -53,9 +53,9 @@ cd ComfyUI
 python main.py --port 8188  
 
 8. Workflow cd your-project  
-put your story in stories/story.txt   
-python script_processor_for_video.py  
+put your story in stories/story.txt
 python scene_generator.py  
+python script_processor_for_video.py  
 python clip_maker_sora.py  
 python film_editor.py  
 alternatively, python main.py  
