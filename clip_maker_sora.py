@@ -6,12 +6,13 @@ from datetime import datetime
 import re
 import os
 import glob
+from pathlib import Path
 
 with open("api_key.txt", "r") as file:
     api_key = file.read()
 client = OpenAI(api_key = api_key)
 
-def make_one(image_path, prompt, output_folder=None):
+def make_one(image_path, prompt, output_folder="./intermediate_files/clips"):
     # Resize images to feed Sora.
     image_path = image_operations.resize_image(image_path, width=1280, height=720)
 
@@ -79,19 +80,30 @@ def make_many(scenes, image_folder="./intermediate_files/images", clip_folder=".
         print(f"Prompt sent: {scenes[i]}\n")
         make_one(image_path=image_path, prompt=scenes[i], output_folder=clip_folder)
 
+def voice_maker(voice_folder="./intermediate_files/clips"):
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    speech_file_path = f"{voice_folder}/speech_{timestamp}.mp4"
+
+    with client.audio.speech.with_streaming_response.create(
+        model="gpt-4o-mini-tts",
+        voice="cedar",
+        input="在下倒有一个主意，不知可以行得行不得？",
+        instructions="Ancient Chinese poem tone",
+    ) as response:
+        response.stream_to_file(speech_file_path)
+
 
 # Run file to use the function one time.
 if __name__ == "__main__":
-    image_path = "./generated_image copy 10/shot_3.png"
-    # image_path = "./intermediate_files/images/shot_15.png"
+    image_path = "./intermediate_files/images/scene_c5.png"
     # output_folder = "./intermediate_files/clips"
-    prompt="""Scene 3
-    - Plot: Outside a glittering Broadway restaurant at night, Soapy stands on the curb with determination, studying the large plate-glass windows that glow with dinner-lit warmth. Pedestrians in fine coats pass; the wet street reflects neon and electric signs.
-    - Character motion: Soapy shifts weight from foot to foot, faces the entrance with renewed resolve.
-    - Camera directions: Medium shot with Soapy in the foreground, then a slow push-in to the entrance; track a few passing pedestrians to emphasize the bustling, affluent street.
-    - Dynamic scene elements: Wet pavement reflections, golden interior light, city nightlife energy.
-    - No background music.
-    - Finish the sentence within the time frame.
-    """
-    make_one(image_path=image_path, prompt=prompt)
+
+    # prompt="""Fanjin, Male, 40 years old, ancient Chinese style, dressed shabby, standing in a crowded room, reading a Paper, being very suprised and happy.
+    # There are many people looking at him, and Fanjin is cheering like 我中了!我中了!
+    # """
+    # prompt="""Fanjin, Male, 40 years old, ancient Chinese style, dressed shabby. He is on the ground without consciousness. Everyone slowly gathered around. People are saying, 哎呀，这可如何是好啊
+    # """
+    # prompt="Fanjin's old mother in a room, crying: 怎有这样苦命的事，中了举人，就得了这个怪病，这可如何是好啊. (sigh). Many people were around her, trying to comfort her."
+    # make_one(image_path=image_path, prompt=prompt)
+    voice_maker()
 
