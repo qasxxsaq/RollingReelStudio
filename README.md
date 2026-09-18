@@ -60,13 +60,15 @@ API_KEY = "your-actual-api-key-here"
 cd ComfyUI  
 python main.py --port 8188  
 
-8. Workflow cd your-project  
+8. Run the Scene Generator:  
+cd your-project  
 put your story in stories/story.txt  
 python scene_generator.py  
 python script_processor_for_video.py  
 python clip_maker_sora.py  
 python film_editor.py  
-alternatively, python main.py  
+Alternatively:  
+python main.py  
 
 10. Output  
 In /intermediate_files, you can find /images, /scripts and /films.  
