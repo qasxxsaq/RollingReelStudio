@@ -1,6 +1,14 @@
 # RollingReel  
+## Introduction
+This is an AI-driven tool that can transform written stories into a coherent short film.
+This system will interpret a story text, generate corresponding video shots with style and character consistency, and assemble these shots into a final film.
 
-Image Generation System Setup Guide  
+## Instructions for Use
+1. Save your story file in ./stories/story.txt
+2. Go to main.py, and click run.
+3. Done! Enjoy your film.
+
+## Image Generation System Setup Guide  
 
 1. Clone ComfyUI Repository  
 git clone https://github.com/comfyanonymous/ComfyUI.git  
